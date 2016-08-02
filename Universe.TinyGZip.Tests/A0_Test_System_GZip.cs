@@ -3,6 +3,7 @@ namespace H3Control.Tests
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
 
     using NUnit.Framework;
 
@@ -51,5 +52,19 @@ namespace H3Control.Tests
 
 
         }
+
+        [Test]
+        public void T01_System_GZip_of_Zero_Length_Stream()
+        {
+            byte[] plain = {};
+            MemoryStream mem = new MemoryStream();
+            using (GZipStream gzip = new GZipStream(mem, CompressionMode.Compress, true))
+            {
+                gzip.Write(plain, 0, plain.Length);
+            }
+
+            Trace.WriteLine("The output of Compressed ZERO-length by System is 0x" + string.Join("", mem.ToArray().Select(x => x.ToString("X2"))));
+        }
+
     }
 }
