@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: V:\NoVCS\DotNetZip-mini\ZGip.Mini\ZGip.Mini\bin\Debug\ZGip.Mini.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7F51E1FB-5793-49BF-85B5-AF0257C87F6D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Universe.TinyGZip</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>Universe.TinyGZip</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Adler.cs" />
+    <Compile Include="CRC32.cs" />
+    <Compile Include="CrcCalculatorStream.cs" />
+    <Compile Include="Deflate.cs" />
+    <Compile Include="DeflateStream.cs" />
+    <Compile Include="GZipStream.cs" />
+    <Compile Include="InflateBlocks.cs" />
+    <Compile Include="InflateCodes.cs" />
+    <Compile Include="InflateManager.cs" />
+    <Compile Include="InfTree.cs" />
+    <Compile Include="InternalConstants.cs" />
+    <Compile Include="InternalInflateConstants.cs" />
+    <Compile Include="SharedUtils.cs" />
+    <Compile Include="StaticTree.cs" />
+    <Compile Include="WorkItem.cs" />
+    <Compile Include="ParallelDeflateOutputStream.cs" />
+    <Compile Include="Tree.cs" />
+    <Compile Include="Zlib.cs" />
+    <Compile Include="ZlibBaseStream.cs" />
+    <Compile Include="ZlibCodec.cs" />
+    <Compile Include="ZlibStream.cs" />
+    <Compile Include="Iso8859Dash1Encoding.cs" />
+    <Compile Include="BlockState.cs" />
+    <Compile Include="DeflateFlavor.cs" />
+    <Compile Include="FlushType.cs" />
+    <Compile Include="CompressionLevel.cs" />
+    <Compile Include="CompressionStrategy.cs" />
+    <Compile Include="CompressionMode.cs" />
+    <Compile Include="ZlibStreamFlavor.cs" />
+    <Compile Include="ZlibConstants.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.DotNetZip.txt" />
+    <Content Include="License.zlib.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
