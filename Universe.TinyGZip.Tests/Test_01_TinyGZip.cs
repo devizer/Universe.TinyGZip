@@ -25,7 +25,7 @@ namespace Universe.TineGZip.Tests
         [Test]
         public void Test_All()
         {
-            var algRandom = new Func<int, byte[]>(GetRandom);
+            var algRandom = new Func<int, byte[]>(GetRndom);
             var algWords = new Func<int, byte[]>(GetWords);
             
             foreach (var l in new[]{ 0,1,2,1111,111111,5000000 })
@@ -62,7 +62,7 @@ namespace Universe.TineGZip.Tests
             Trace.WriteLine(string.Format("Done: Compressed={0,10} | {1}", gzipped.Length.ToString("n0"), info));
         }
 
-        static byte[] GetRandom(int length)
+        static byte[] GetRndom(int length)
         {
             byte[] bytes = new byte[length];
             rnd.NextBytes(bytes);
