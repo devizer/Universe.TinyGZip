@@ -21,7 +21,7 @@
                     return true;
                 };
             }
-            CrossInfo.AttachUnitTrace("H3Control unit tests");
+            CrossInfo.AttachUnitTrace("unit tests");
             StartAt = Stopwatch.StartNew();
         }
 

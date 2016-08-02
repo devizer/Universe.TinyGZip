@@ -13,7 +13,7 @@ namespace H3Control.Tests
     using GZipStream = System.IO.Compression.GZipStream;
 
     [TestFixture]
-    public class A0_Test_System_GZip 
+    public class A0_Test_System_GZip : BaseTest
     {
         [TestFixtureSetUp]
         public void TestFixtureSetUp()

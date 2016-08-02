@@ -18,7 +18,7 @@ namespace Universe.TineGZip.Tests
     using TinyGZip = global::Universe.TinyGZip.GZipStream;
 
     [TestFixture]
-    public class Test_01_TinyGZip
+    public class Test_01_TinyGZip : BaseTest
     {
         static Random rnd = new Random(1);
 
