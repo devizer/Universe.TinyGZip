@@ -49,7 +49,7 @@ namespace Universe.TineGZip.Tests
             using (System.IO.Compression.GZipStream ungz = new System.IO.Compression.GZipStream(gzipped, System.IO.Compression.CompressionMode.Decompress, true))
                 ungz.CopyTo(copy);
 
-            var info = string.Format("Arg: {0,17} Level: {1}", arg.Length.ToString("n0") + " " + alg.Replace("Get", "") + " bytes", level);
+            var info = string.Format("Arg: {0,23} Level: {1}", arg.Length.ToString("n0") + " " + alg.Replace("Get", "") + " bytes", level);
             var expected = arg;
             var y = copy.ToArray();
             if (expected.Length != y.Length)
