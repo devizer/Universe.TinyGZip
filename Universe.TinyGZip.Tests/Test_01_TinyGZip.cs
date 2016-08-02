@@ -28,7 +28,7 @@ namespace Universe.TineGZip.Tests
             var algRandom = new Func<int, byte[]>(GetRandom);
             var algWords = new Func<int, byte[]>(GetWords);
             
-            foreach (var l in new[]{ /*0,*/1,2,1111,111111,5000000 })
+            foreach (var l in new[]{ 0,1,2,1111,111111,5000000 })
                 for(int level = 0; level<=9; level++)
                     foreach (var alg in new[] {algRandom, algWords})
                     {
@@ -49,7 +49,7 @@ namespace Universe.TineGZip.Tests
             using (System.IO.Compression.GZipStream ungz = new System.IO.Compression.GZipStream(gzipped, System.IO.Compression.CompressionMode.Decompress, true))
                 ungz.CopyTo(copy);
 
-            var info = string.Format("Arg: {0,-11} bytes. Level: {1,-11}. Alg is {2,-11}", arg.Length.ToString("n0"), level, alg);
+            var info = string.Format("Arg: {0,17} Level: {1,-11} Alg: {2,-11}", arg.Length.ToString("n0") + " bytes", level, alg);
             var expected = arg;
             var y = copy.ToArray();
             if (expected.Length != y.Length)
@@ -59,7 +59,7 @@ namespace Universe.TineGZip.Tests
                 if (expected[i] != y[i])
                     Assert.Fail("Byte[" + i + "] distinguishes");
 
-            Trace.WriteLine("Done: Compressed=" + gzipped.Length.ToString("n0") + ". " + info);
+            Trace.WriteLine(string.Format("Done: Compressed={0,10} | {1}", gzipped.Length.ToString("n0"), info));
         }
 
         static byte[] GetRandom(int length)
