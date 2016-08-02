@@ -59,7 +59,7 @@ namespace Universe.TineGZip.Tests
                 if (expected[i] != y[i])
                     Assert.Fail("Byte[" + i + "] distinguishes");
 
-            Debug.WriteLine("Done: Compressed=" + gzipped.Length.ToString("n0") + ". " + info);
+            Trace.WriteLine("Done: Compressed=" + gzipped.Length.ToString("n0") + ". " + info);
         }
 
         static byte[] GetRandom(int length)
