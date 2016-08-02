@@ -28,7 +28,7 @@ namespace Universe.TineGZip.Tests
             var algRandom = new Func<int, byte[]>(GetRandom);
             var algWords = new Func<int, byte[]>(GetWords);
             
-            foreach (var l in new[]{ 0,1,2,1111,111111,5000000 })
+            foreach (var l in new[]{ /*0,*/1,2,1111,111111,5000000 })
                 for(int level = 0; level<=9; level++)
                     foreach (var alg in new[] {algRandom, algWords})
                     {
