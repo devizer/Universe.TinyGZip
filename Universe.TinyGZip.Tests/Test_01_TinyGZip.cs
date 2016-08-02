@@ -52,14 +52,12 @@ namespace Universe.TineGZip.Tests
             var info = string.Format("Arg: {0,23} Level: {1}", arg.Length.ToString("n0") + " " + alg.Replace("Get", "") + " bytes", level);
             var expected = arg;
             var y = copy.ToArray();
-            if (expected.Length != y.Length)
-                Assert.Fail("Size distinguishes: {0}", info);
+            Assert.AreEqual(expected.Length, y.Length, "Size distinguishes: {0}", info);
 
             for(int i=0; i<expected.Length; i++)
-                if (expected[i] != y[i])
-                    Assert.Fail("Byte[" + i + "] distinguishes");
+                Assert.AreEqual(expected[i], y[i], "Byte [{0}] distinguishes. {1}", i, info);
 
-            Trace.WriteLine(string.Format("Done. Compressed:{0,10} | {1}", gzipped.Length.ToString("n0"), info));
+            Trace.WriteLine(string.Format("Done. Compressed: {0,10} | {1}", gzipped.Length.ToString("n0"), info));
         }
 
         static byte[] GetRndom(int length)
