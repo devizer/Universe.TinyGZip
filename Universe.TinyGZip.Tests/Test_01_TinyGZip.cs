@@ -59,7 +59,7 @@ namespace Universe.TineGZip.Tests
                 if (expected[i] != y[i])
                     Assert.Fail("Byte[" + i + "] distinguishes");
 
-            Trace.WriteLine(string.Format("Done: Compressed={0,10} | {1}", gzipped.Length.ToString("n0"), info));
+            Trace.WriteLine(string.Format("Done. Compressed:{0,10} | {1}", gzipped.Length.ToString("n0"), info));
         }
 
         static byte[] GetRndom(int length)
