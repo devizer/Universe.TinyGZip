@@ -18,7 +18,7 @@ namespace Universe.TineGZip.Tests
     using TinyGZip = global::Universe.TinyGZip.GZipStream;
 
     [TestFixture]
-    public class Test_01_GZip
+    public class Test_01_TinyGZip
     {
         static Random rnd = new Random(1);
 
@@ -50,13 +50,13 @@ namespace Universe.TineGZip.Tests
                 ungz.CopyTo(copy);
 
             var info = string.Format("Arg: {0,-11} bytes. Level: {1,-11}. Alg is {2,-11}", arg.Length.ToString("n0"), level, alg);
-            var x = arg;
+            var expected = arg;
             var y = copy.ToArray();
-            if (x.Length != y.Length)
+            if (expected.Length != y.Length)
                 Assert.Fail("Size distinguishes: {0}", info);
 
-            for(int i=0; i<x.Length; i++)
-                if (x[i] != y[i])
+            for(int i=0; i<expected.Length; i++)
+                if (expected[i] != y[i])
                     Assert.Fail("Byte[" + i + "] distinguishes");
 
             Debug.WriteLine("Done: Compressed=" + gzipped.Length.ToString("n0") + ". " + info);

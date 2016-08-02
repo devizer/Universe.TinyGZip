@@ -50,7 +50,7 @@
     </Compile>
     <Compile Include="A0_Test_System_GZip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test_01_GZip.cs" />
+    <Compile Include="Test_01_TinyGZip.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
