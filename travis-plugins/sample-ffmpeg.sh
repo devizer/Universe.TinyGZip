@@ -8,7 +8,7 @@ $HOME/bin/ffmpeg -i $file -y \
   -f matroska \
   -map 0:0 -map 0:1  \
   -f mkv -c:v libx265 \
-  -preset medium \
+  -preset fast \
   -scodec copy -threads 3 -strict experimental \
   -c:a copy \
   -x265-params crf=22:crf-min=15:crf-max=22:pools=4 \
