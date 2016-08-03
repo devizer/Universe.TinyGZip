@@ -26,6 +26,18 @@ The best case is compression of random data. The worst - lorem ipsum
 ## may be useful?
 Method checks is System.IO.Compression.GZipStream supported and returns either System stream of Tiny stream depending on check result:
 ```csharp
-public static Stream GZipExtentions.CreateDecompressor(Stream gzipped)
+public class GZipExtentions
+{
+  public static Stream CreateDecompressor(Stream gzipped)
+  {
+      if (gzipped == null)
+          throw new ArgumentNullException("gzipped");
+
+      if (IsSystemGZipSupported)
+          return new System.IO.Compression.GZipStream(gzipped, Sys.CompressionMode.Decompress);
+      else
+          return new Universe.TinyGZip.GZipStream(gzipped, Tiny.CompressionMode.Decompress, false);
+  }
+}
 ```
 
