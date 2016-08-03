@@ -24,7 +24,7 @@ The best case on Linux with native gzip library under System GZipStream
 The best case is compression of random data. The worst - lorem ipsum
 
 ## may be useful?
-Method checks is System.IO.Compression.GZipStream supported and returns either System stream of TinyStream depending on check result:
+Method checks is System.IO.Compression.GZipStream supported and returns either System stream of Tiny stream depending on check result:
 ```csharp
 public static Stream GZipExtentions.CreateDecompressor(Stream gzipped)
 ```
