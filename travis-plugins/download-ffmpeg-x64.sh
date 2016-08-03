@@ -18,8 +18,10 @@ ls -L $dir-files
 mkdir -p $HOME/bin
 cd $dir-files
 cd ffmpeg*
-cp * $HOME/bin
+cp -R * $HOME/bin
 cd $pwd
 rm -rf $dir-files
 rm -f $file
 rm -f $dir
+cd $old
+echo '************************ DONE: $HOME/bin/ffmpeg is ready *********************'
