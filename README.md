@@ -8,3 +8,12 @@ The namespace contains only 5 types:
 - `CompressionMode`
 - `ZlibException`
 
+# perfomance
+The worst case on Windows .NET
+- Tiny compression is slower than System compression by 40%
+- Tiny decompression is slower then System by 7%
+
+
+The worst case on Linux
+- Tiny compression is slower than System compression by 2,5 times
+- Tiny decompression is slower than System one by 3,6 times
