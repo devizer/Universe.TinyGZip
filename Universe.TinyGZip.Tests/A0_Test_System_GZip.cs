@@ -27,7 +27,6 @@ namespace H3Control.Tests
             Trace.WriteLine("GZipExtentions.IsSystemGZipSupported: " + GZipExtentions.IsSystemGZipSupported);
         }
 
-
         [Test]
         public void T01_GZip_Doesnt_Fail()
         {
@@ -58,8 +57,6 @@ namespace H3Control.Tests
                 Trace.WriteLine("GZip streams are not supported on this mono configuration. Please use SharpZipLib and DotNetZip");
                 Assert.Fail("System GZip doesnt work" + Environment.NewLine + ex);
             }
-
-
         }
 
         [Test]

@@ -1,14 +1,22 @@
-# Universe.TinyGZip [![Build Status](https://travis-ci.org/devizer/Universe.TinyGZip.svg?branch=master)](https://travis-ci.org/devizer/Universe.TinyGZip)
+## Universe.TinyGZip [![Build Status](https://travis-ci.org/devizer/Universe.TinyGZip.svg?branch=master)](https://travis-ci.org/devizer/Universe.TinyGZip)
 The build output is the single file: https://github.com/devizer/Universe.TinyGZip/blob/master/out/Universe.TinyGZip.cs
 
-The namespace contains only 5 types:
+## may be useful?
+Method checks is System.IO.Compression.GZipStream supported and returns either System stream of TinyStream depending on check result:
+```csharp
+public static Stream GZipExtentions.CreateDecompressor(Stream gzipped)
+```
+
+
+The bottom line, the namespace contains only 5 types:
 - `GZipStream`
 - `ParallelDeflateOutputStream`
 - `CompressionLevel`
 - `CompressionMode`
 - `ZlibException`
 
-# perfomance
+
+## perfomance
 The worst case on Windows .NET
 - Tiny compression is slower than System compression by 40%
 - Tiny decompression is slower then System by 7%
