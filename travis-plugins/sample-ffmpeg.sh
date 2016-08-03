@@ -7,7 +7,7 @@ sudo apt-get install pv -y > /dev/null 2>&1
 $HOME/bin/ffmpeg -i $file -y \
   -f matroska \
   -map 0:0 -map 0:1  \
-  -f mkv -c:v libx265 \
+  -c:v libx265 \
   -preset fast \
   -scodec copy -threads 3 -strict experimental \
   -c:a copy \
