@@ -52,16 +52,26 @@ namespace Universe.TineGZip.Tests
 
         static void TryTinyToSystem(byte[] arg, CompressionLevel level, string alg)
         {
+            Stopwatch swCo = Stopwatch.StartNew();
             MemoryStream gzipped = new MemoryStream();
             using (TinyGZip gz = new TinyGZip(gzipped, TinyCompressionMode.Compress, level, true))
                 gz.Write(arg, 0, arg.Length);
 
+
+            var elapsedCo = swCo.ElapsedMilliseconds;
+            Stopwatch swDe = Stopwatch.StartNew();
             gzipped.Position = 0;
             MemoryStream copy = new MemoryStream();
             using (System.IO.Compression.GZipStream ungz = new System.IO.Compression.GZipStream(gzipped, System.IO.Compression.CompressionMode.Decompress, true))
                 ungz.CopyTo(copy);
 
-            var info = string.Format("Arg: {0,31} Level: {1}", arg.Length.ToString("n0") + " " + alg.Replace("Get", "") + " bytes", level);
+            var elapsedDe = swDe.ElapsedMilliseconds;
+            var info = string.Format("Arg: {0,31} Level: {1}, {2} + {3} msec", 
+                arg.Length.ToString("n0") + " " + alg.Replace("Get", "") + " bytes", 
+                level,
+                elapsedCo,
+                elapsedDe);
+
             var expected = arg;
             var y = copy.ToArray();
             Assert.AreEqual(expected.Length, y.Length, "Size distinguishes: {0}", info);
@@ -74,16 +84,24 @@ namespace Universe.TineGZip.Tests
 
         static void TrySystemToTiny(byte[] arg, string alg)
         {
+            Stopwatch swCo = Stopwatch.StartNew();
             MemoryStream gzipped = new MemoryStream();
             using (System.IO.Compression.GZipStream gz = new System.IO.Compression.GZipStream(gzipped, CompressionMode.Compress, true))
                 gz.Write(arg, 0, arg.Length);
 
+            var elapsedCo = swCo.ElapsedMilliseconds;
+            Stopwatch swDe = Stopwatch.StartNew();
             gzipped.Position = 0;
             MemoryStream copy = new MemoryStream();
             using (TinyGZip ungz = new TinyGZip(gzipped, TinyCompressionMode.Decompress, true))
                 ungz.CopyTo(copy);
 
-            var info = string.Format("Arg: {0,31}", arg.Length.ToString("n0") + " " + alg.Replace("Get", "") + " bytes");
+            var elapsedDe = swDe.ElapsedMilliseconds;
+            var info = string.Format("Arg: {0,31}, {1} + {2} msec", 
+                arg.Length.ToString("n0") + " " + alg.Replace("Get", "") + " bytes",
+                elapsedCo,
+                elapsedDe);
+
             var expected = arg;
             var y = copy.ToArray();
             Assert.AreEqual(expected.Length, y.Length, "Size distinguishes: {0}", info);

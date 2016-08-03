@@ -11,7 +11,7 @@ script:
   - bash travis-plugins/sample-ffmpeg.sh
   - xbuild $TRAVIS_SOLUTION /t:Rebuild /p:Configuration=Release /verbosity:minimal
   - xbuild $TRAVIS_SOLUTION /t:Rebuild /p:Configuration=Debug   /verbosity:minimal
-  - mono --debug --desktop packages/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --labels=On --workers=1 --work=Universe.TinyGZip.Tests/bin/Debug Universe.TinyGZip.Tests/bin/Debug/Universe.TinyGZip.Tests.dll
+  - mono --desktop packages/NUnit.ConsoleRunner.3.4.1/tools/nunit3-console.exe --labels=On --workers=1 --work=Universe.TinyGZip.Tests/bin/Release Universe.TinyGZip.Tests/bin/Release/Universe.TinyGZip.Tests.dll
   - bash travis-plugins/show-perfomance.sh
 
 
