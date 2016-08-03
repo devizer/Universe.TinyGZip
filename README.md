@@ -1,5 +1,6 @@
 ## Universe.TinyGZip [![Build Status](https://travis-ci.org/devizer/Universe.TinyGZip.svg?branch=master)](https://travis-ci.org/devizer/Universe.TinyGZip)
-The build arrtefact is the single source file: https://github.com/devizer/Universe.TinyGZip/blob/master/out/Universe.TinyGZip.cs
+The build artefact is the single source file: 
+https://github.com/devizer/Universe.TinyGZip/blob/master/out/Universe.TinyGZip.cs
 
 The namespace contains 5 types:
 - `GZipStream`
