@@ -15,6 +15,7 @@ $HOME/bin/ffmpeg -i $file -y \
   -x265-params crf=21:crf-min=20:crf-max=22:pools=4 \
   - | pv > $file.mkv
   
+ls -l $file.mkv
 echo '************* convert done ****************'
 echo '
 
