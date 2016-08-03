@@ -22,6 +22,13 @@ namespace H3Control.Tests
         }
 
         [Test]
+        public void T00_Display_Is_System_GZip_Supported()
+        {
+            Trace.WriteLine("GZipExtentions.IsSystemGZipSupported: " + GZipExtentions.IsSystemGZipSupported);
+        }
+
+
+        [Test]
         public void T01_GZip_Doesnt_Fail()
         {
             try

@@ -11,7 +11,6 @@
         static readonly object Sync = new object();
         static readonly string _notSupportedMessage = "System.IO.Compression.GZipStream does not support decompression.";
 
-
         public static Stream CreateDecompressor(Stream gzipped)
         {
             if (gzipped == null)
@@ -60,7 +59,6 @@
                                 _isSupported = false;
                                 Trace.WriteLine(_notSupportedMessage + " We are using TinyGZip implementation" + Environment.NewLine + ex);
                             }
-
                         }
 
                 return _isSupported.Value;
