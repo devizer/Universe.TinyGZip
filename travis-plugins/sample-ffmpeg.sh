@@ -10,7 +10,7 @@ $HOME/bin/ffmpeg -i $file -y \
   -scodec copy -threads 3 -strict experimental \
   -c:a copy \
   -x265-params crf=22:crf-min=15:crf-max=22:pools=4 \
-  /tmp/$file.mkv
+  $file.mkv
 
 echo '************* convert done ****************'
 echo '
