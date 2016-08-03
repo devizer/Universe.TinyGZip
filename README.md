@@ -34,9 +34,9 @@ public class GZipExtentions
           throw new ArgumentNullException("gzipped");
 
       if (IsSystemGZipSupported)
-          return new System.IO.Compression.GZipStream(gzipped, Sys.CompressionMode.Decompress);
+          return new System.IO.Compression.GZipStream(gzipped, ...);
       else
-          return new Universe.TinyGZip.GZipStream(gzipped, Tiny.CompressionMode.Decompress, false);
+          return new Universe.TinyGZip.GZipStream(gzipped, ...);
   }
 }
 ```
