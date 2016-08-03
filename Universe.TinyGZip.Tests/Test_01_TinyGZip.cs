@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Universe.TineGZip.Tests
 {
     using System.Diagnostics;
     using System.IO;
-    using System.IO.Compression;
     using System.Linq;
-    using System.Xml.XPath;
 
     using NUnit.Framework;
 
     using TinyGZip;
 
-    using CompressionMode = TinyGZip.CompressionMode;
+    using TinyCompressionMode = global::Universe.TinyGZip.CompressionMode;
     using TinyGZip = global::Universe.TinyGZip.GZipStream;
 
     [TestFixture]
@@ -41,7 +37,7 @@ namespace Universe.TineGZip.Tests
         static void Try(byte[] arg, CompressionLevel level, string alg)
         {
             MemoryStream gzipped = new MemoryStream();
-            using(TinyGZip gz = new TinyGZip(gzipped, CompressionMode.Compress, level, true))
+            using(TinyGZip gz = new TinyGZip(gzipped, TinyCompressionMode.Compress, level, true))
                 gz.Write(arg, 0, arg.Length);
 
             gzipped.Position = 0;
