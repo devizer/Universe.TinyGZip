@@ -4,7 +4,8 @@ mono:
   - latest
 install:
   - nuget restore $TRAVIS_SOLUTION
-  - bash travis-plugins/download-ffmpeg-x64.sh && $HOME/bin/ffmpeg -codecs
+  - bash travis-plugins/download-ffmpeg-x64.sh || true
+  - $HOME/bin/ffmpeg -codecs
   - sudo apt-get install sysbench -y
   - printenv
 script:
