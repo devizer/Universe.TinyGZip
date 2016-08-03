@@ -58,6 +58,7 @@
     <Compile Include="CrcCalculatorStream.cs" />
     <Compile Include="Deflate.cs" />
     <Compile Include="DeflateStream.cs" />
+    <Compile Include="GZipExtentions.cs" />
     <Compile Include="GZipStream.cs" />
     <Compile Include="InflateBlocks.cs" />
     <Compile Include="InflateCodes.cs" />

@@ -34,6 +34,8 @@ namespace H3Control.Tests
                 }
 
                 Trace.WriteLine("Compressed {5,4,3,2,1} length is " + mem.Length);
+                string asCSharp = string.Join(",", mem.ToArray().Select(x => "0x" + x.ToString("x2")));
+                Trace.WriteLine("{" + asCSharp + "}");
 
                 mem.Position = 0;
                 MemoryStream copy = new MemoryStream();
