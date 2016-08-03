@@ -13,7 +13,12 @@ The worst case on Windows .NET
 - Tiny compression is slower than System compression by 40%
 - Tiny decompression is slower then System by 7%
 
-
-The worst case on Linux
+The worst case on Linux with native gzip library under System GZipStream
 - Tiny compression is slower than System compression by 2,5 times
 - Tiny decompression is slower than System one by 3,6 times
+
+The best case on Linux with native gzip library under System GZipStream
+- Tiny compression is slower than System compression by 2,2 times
+- Tiny decompression is slower than System one by 3,1 times
+
+The best case is compression of random data. The worst - lorem ipsum
