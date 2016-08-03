@@ -12,7 +12,7 @@ $HOME/bin/ffmpeg -i $file -y \
   -preset ultrafast \
   -scodec copy -threads 3 -strict experimental \
   -c:a copy \
-  -x265-params crf=21:crf-min=20:crf-max=22:pools=4 \
+  -x265-params crf=25:crf-min=24:crf-max=26:pools=4 \
   - | pv > $file.mkv
   
 ls -l $file
