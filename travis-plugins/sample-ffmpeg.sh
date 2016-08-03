@@ -9,7 +9,7 @@ $HOME/bin/ffmpeg -i $file -y \
   -f matroska \
   -map 0:0 -map 0:1  \
   -c:v libx265 \
-  -preset ultrafast \
+  -preset medium \
   -scodec copy -threads 3 -strict experimental \
   -c:a copy \
   -x265-params crf=25:crf-min=24:crf-max=26:pools=4 \
