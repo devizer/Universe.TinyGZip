@@ -10,6 +10,7 @@ namespace Universe.TineGZip.Tests
 
     using TinyGZip;
 
+    using CompressionMode = System.IO.Compression.CompressionMode;
     using TinyCompressionMode = global::Universe.TinyGZip.CompressionMode;
     using TinyGZip = global::Universe.TinyGZip.GZipStream;
 
@@ -19,25 +20,40 @@ namespace Universe.TineGZip.Tests
         static Random rnd = new Random(1);
 
         [Test]
-        public void Test_All()
+        public void Test_Tiny_to_System()
         {
             var algRandom = new Func<int, byte[]>(GetRndom);
             var algWords = new Func<int, byte[]>(GetWords);
-            
-            foreach (var l in new[]{ /*0,*/1,2,1111,111111,5000000 })
-                for(int level = 0; level<=9; level++)
-                    foreach (var alg in new[] {algRandom, algWords})
+
+            foreach (var l in new[] { /*0,*/1, 2, 1111, 111111, 5000000 })
+                for (int level = 0; level <= 9; level++)
+                    foreach (var alg in new[] { algRandom, algWords })
                     {
                         byte[] bytes = alg(l);
-                        Try(bytes, (CompressionLevel) level, alg.Method.Name);
+                        TryTinyToSystem(bytes, (CompressionLevel)level, "T -> S: " + alg.Method.Name);
                     }
 
         }
 
-        static void Try(byte[] arg, CompressionLevel level, string alg)
+        [Test]
+        public void Test_System_to_Tiny()
+        {
+            var algRandom = new Func<int, byte[]>(GetRndom);
+            var algWords = new Func<int, byte[]>(GetWords);
+
+            foreach (var l in new[] { /*0,*/1, 2, 1111, 111111, 5000000 })
+                    foreach (var alg in new[] { algRandom, algWords })
+                    {
+                        byte[] bytes = alg(l);
+                        TrySystemToTiny(bytes, "S -> T: " + alg.Method.Name);
+                    }
+
+        }
+
+        static void TryTinyToSystem(byte[] arg, CompressionLevel level, string alg)
         {
             MemoryStream gzipped = new MemoryStream();
-            using(TinyGZip gz = new TinyGZip(gzipped, TinyCompressionMode.Compress, level, true))
+            using (TinyGZip gz = new TinyGZip(gzipped, TinyCompressionMode.Compress, level, true))
                 gz.Write(arg, 0, arg.Length);
 
             gzipped.Position = 0;
@@ -45,12 +61,34 @@ namespace Universe.TineGZip.Tests
             using (System.IO.Compression.GZipStream ungz = new System.IO.Compression.GZipStream(gzipped, System.IO.Compression.CompressionMode.Decompress, true))
                 ungz.CopyTo(copy);
 
-            var info = string.Format("Arg: {0,23} Level: {1}", arg.Length.ToString("n0") + " " + alg.Replace("Get", "") + " bytes", level);
+            var info = string.Format("Arg: {0,31} Level: {1}", arg.Length.ToString("n0") + " " + alg.Replace("Get", "") + " bytes", level);
             var expected = arg;
             var y = copy.ToArray();
             Assert.AreEqual(expected.Length, y.Length, "Size distinguishes: {0}", info);
 
-            for(int i=0; i<expected.Length; i++)
+            for (int i = 0; i < expected.Length; i++)
+                Assert.AreEqual(expected[i], y[i], "Byte [{0}] distinguishes. {1}", i, info);
+
+            Trace.WriteLine(string.Format("Done. Compressed: {0,10} | {1}", gzipped.Length.ToString("n0"), info));
+        }
+
+        static void TrySystemToTiny(byte[] arg, string alg)
+        {
+            MemoryStream gzipped = new MemoryStream();
+            using (System.IO.Compression.GZipStream gz = new System.IO.Compression.GZipStream(gzipped, CompressionMode.Compress, true))
+                gz.Write(arg, 0, arg.Length);
+
+            gzipped.Position = 0;
+            MemoryStream copy = new MemoryStream();
+            using (TinyGZip ungz = new TinyGZip(gzipped, TinyCompressionMode.Decompress, true))
+                ungz.CopyTo(copy);
+
+            var info = string.Format("Arg: {0,31}", arg.Length.ToString("n0") + " " + alg.Replace("Get", "") + " bytes");
+            var expected = arg;
+            var y = copy.ToArray();
+            Assert.AreEqual(expected.Length, y.Length, "Size distinguishes: {0}", info);
+
+            for (int i = 0; i < expected.Length; i++)
                 Assert.AreEqual(expected[i], y[i], "Byte [{0}] distinguishes. {1}", i, info);
 
             Trace.WriteLine(string.Format("Done. Compressed: {0,10} | {1}", gzipped.Length.ToString("n0"), info));
