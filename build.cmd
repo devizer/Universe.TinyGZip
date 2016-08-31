@@ -21,7 +21,4 @@ mkdir bin 1>nul 2>&1
   /langversion:4 /platform:anycpu ^
   out\Universe.TinyGZip.cs
 
-%CSC4% /out:bin\Universe.TinyGZip.%FW%-csc2.dll /target:library /debug- /optimize+ ^
-  /langversion:4 /platform:anycpu ^
-  out\Universe.TinyGZip.cs
   
