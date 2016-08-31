@@ -1,5 +1,5 @@
  
-﻿namespace Universe.TinyGZip.InternalImplementation
+namespace Universe.TinyGZip.InternalImplementation
 {
     public sealed class Adler
     {
@@ -1880,15 +1880,56 @@ namespace Universe.TinyGZip.InternalImplementation
         static readonly object Sync = new object();
         static readonly string _notSupportedMessage = "System.IO.Compression.GZipStream does not support decompression.";
 
+        public static Stream CreateCompressedFile(string fullPath)
+        {
+            if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+            {
+                File.WriteAllBytes(fullPath, new byte[0]);
+                ProcessStartInfo si = new ProcessStartInfo("compact", "/c \"" + fullPath + "\"");
+                si.UseShellExecute = false;
+                si.CreateNoWindow = true;
+                try
+                {
+                    using (var p = Process.Start(si))
+                    {
+                        p.WaitForExit();
+                    }
+
+                    FileStream fs = new FileStream(fullPath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite, 16384);
+                    return fs;
+                }
+                catch (Exception)
+                {
+                }
+            }
+
+            FileStream fileStream = new FileStream(fullPath + ".gz", FileMode.Create, FileAccess.Write, FileShare.ReadWrite, 16384);
+            Stream gz = CreateCompressor(fileStream);
+            return gz;
+
+        }
+
+
         public static Stream CreateDecompressor(Stream gzipped)
         {
             if (gzipped == null)
                 throw new ArgumentNullException("gzipped");
 
             if (IsSystemGZipSupported)
-                return new SysGZip.GZipStream(gzipped, SysGZip.CompressionMode.Decompress);
+                return new SysGZip.GZipStream(gzipped, SysGZip.CompressionMode.Decompress, false);
             else
                 return new Universe.TinyGZip.GZipStream(gzipped, CompressionMode.Decompress, false);
+        }
+
+        public static Stream CreateCompressor(Stream plain)
+        {
+            if (plain == null)
+                throw new ArgumentNullException("plain");
+
+            if (IsSystemGZipSupported)
+                return new SysGZip.GZipStream(plain, SysGZip.CompressionMode.Compress, false);
+            else
+                return new Universe.TinyGZip.GZipStream(plain, CompressionMode.Compress, CompressionLevel.Level1, false);
         }
 
         public static bool IsSystemGZipSupported
