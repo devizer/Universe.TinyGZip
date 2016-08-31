@@ -13,7 +13,7 @@
 
         // case
         // Windows: use builtin compression
-        // Linux:   use .gz additional extentio
+        // Linux:   use .gz additional extention
         public static Stream CreateCompressedFile(string fullPath)
         {
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
