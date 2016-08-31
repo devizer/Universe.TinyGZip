@@ -64,7 +64,7 @@
             if (IsSystemGZipSupported)
                 return new SysGZip.GZipStream(plain, SysGZip.CompressionMode.Compress, false);
             else
-                return new Universe.TinyGZip.GZipStream(plain, CompressionMode.Decompress, false);
+                return new Universe.TinyGZip.GZipStream(plain, CompressionMode.Compress, CompressionLevel.Level1, false);
         }
 
         public static bool IsSystemGZipSupported
