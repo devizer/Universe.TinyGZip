@@ -2,6 +2,7 @@
 mkdir out 1>nul 2>&1
 
 echo. > out\Universe.TinyGZip.cs.tmp
+echo #pragma warning disable 642, 219 >> out\Universe.TinyGZip.cs.tmp
 for %%f in (Universe.TinyGZip\*.cs) DO (
   type %%f >> out\Universe.TinyGZip.cs.tmp
   echo. >> out\Universe.TinyGZip.cs.tmp
