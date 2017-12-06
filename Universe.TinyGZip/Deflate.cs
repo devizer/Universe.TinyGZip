@@ -8,6 +8,7 @@ namespace Universe.TinyGZip.InternalImplementation
 {
     using System;
 
+    #pragma warning disable 642, 219
     internal sealed class DeflateManager
     {
         private static readonly int MEM_LEVEL_MAX = 9;
