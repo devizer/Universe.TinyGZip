@@ -11,6 +11,7 @@ namespace Universe.TinyGZip.InternalImplementation
     using System.IO;
     using System.Text;
 
+    #pragma warning disable 642, 219
     internal class ZlibBaseStream : Stream
     {
         protected internal byte[] _buf1 = new byte[1];

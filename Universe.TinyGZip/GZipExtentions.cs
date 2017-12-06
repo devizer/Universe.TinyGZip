@@ -8,7 +8,7 @@
     public class GZipExtentions
     {
         private static bool? _isSupported = null;
-        static readonly object Sync = new object();
+        static readonly object SyncIsSupported = new object();
         static readonly string _notSupportedMessage = "System.IO.Compression.GZipStream does not support compression/decompression.";
 
         // case
@@ -82,7 +82,7 @@
             get
             {
                 if (!_isSupported.HasValue)
-                    lock(Sync)
+                    lock(SyncIsSupported)
                         if (!_isSupported.HasValue)
                             _isSupported = IsSystemGZipSupport_Decompress() && IsSystemGZipSupport_Compress();
 

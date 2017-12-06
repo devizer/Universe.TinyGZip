@@ -2,6 +2,7 @@ namespace Universe.TinyGZip.InternalImplementation
 {
     using System;
 
+    #pragma warning disable 642, 219
     internal sealed class InflateCodes
     {
         private const int START = 0;
