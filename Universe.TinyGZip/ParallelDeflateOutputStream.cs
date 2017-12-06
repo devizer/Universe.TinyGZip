@@ -14,6 +14,7 @@ namespace Universe.TinyGZip
 
     using InternalImplementation;
 
+    #pragma warning disable 642, 219
     public class ParallelDeflateOutputStream : Stream
     {
         private static readonly int IO_BUFFER_SIZE_DEFAULT = 65536;
